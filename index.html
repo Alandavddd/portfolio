@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-reveal="js-pending">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nome Sobrenome — Landing pages sob medida</title>
+<meta name="description" content="Projeto, design e desenvolvimento de landing pages feitas para converter.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__brand">Nome Sobrenome</a>
+    <nav class="nav__links" aria-label="Navegação principal">
+      <a href="#projetos">Projetos</a>
+      <a href="#processo">Processo</a>
+      <a href="#contato" class="nav__cta">Falar comigo</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__media" aria-hidden="true">
+      <video
+        class="hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="assets/particles-poster.jpg">
+        <source src="assets/particles-bg.mp4" type="video/mp4">
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Design &amp; desenvolvimento de landing pages</p>
+      <h1 class="hero__title" data-parallax="text">
+        Páginas que fazem seu<br>visitante virar cliente.
+      </h1>
+      <p class="hero__subtitle">
+        Eu projeto e construo landing pages sob medida — direto ao ponto,
+        rápidas de carregar e pensadas pra converter, não só pra bonitas.
+      </p>
+      <div class="hero__actions">
+        <a href="#projetos" class="btn btn--primary">Ver projetos</a>
+        <a href="#contato" class="btn btn--ghost">Falar comigo</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ============ PROJETOS ============ -->
+  <section class="projects" id="projetos">
+    <div class="section-head">
+      <p class="section-head__eyebrow">Projetos</p>
+      <h2 class="section-head__title">Alguns trabalhos recentes</h2>
+    </div>
+
+    <div class="project-list">
+
+      <!-- PROJETO 1 — troque a imagem, o texto e o link -->
+      <article class="project">
+        <a class="project__media" href="https://example.com" target="_blank" rel="noopener">
+          <div class="project__placeholder">
+            <span>Preview do projeto 1</span>
+          </div>
+          <!-- Quando tiver o print, troque o bloco acima por:
+          <img src="assets/projeto-1.jpg" alt="Landing page do Projeto 1"> -->
+        </a>
+        <div class="project__info">
+          <p class="project__tag">Consultoria financeira</p>
+          <h3 class="project__title">Nome do Cliente</h3>
+          <p class="project__desc">
+            Landing page de captação de leads com foco em agendamento de
+            consultoria, formulário direto no hero e prova social logo abaixo.
+          </p>
+          <a class="project__link" href="https://example.com" target="_blank" rel="noopener">Ver o site</a>
+        </div>
+      </article>
+
+      <!-- PROJETO 2 -->
+      <article class="project project--reverse">
+        <a class="project__media" href="https://example.com" target="_blank" rel="noopener">
+          <div class="project__placeholder">
+            <span>Preview do projeto 2</span>
+          </div>
+        </a>
+        <div class="project__info">
+          <p class="project__tag">E-commerce</p>
+          <h3 class="project__title">Nome do Cliente</h3>
+          <p class="project__desc">
+            Página de lançamento de produto com catálogo reduzido, comparação
+            de planos e checkout simplificado para aumentar a conversão.
+          </p>
+          <a class="project__link" href="https://example.com" target="_blank" rel="noopener">Ver o site</a>
+        </div>
+      </article>
+
+      <!-- PROJETO 3 -->
+      <article class="project">
+        <a class="project__media" href="https://example.com" target="_blank" rel="noopener">
+          <div class="project__placeholder">
+            <span>Preview do projeto 3</span>
+          </div>
+        </a>
+        <div class="project__info">
+          <p class="project__tag">SaaS</p>
+          <h3 class="project__title">Nome do Cliente</h3>
+          <p class="project__desc">
+            Site institucional com seção de recursos, planos de assinatura
+            e FAQ, construído para reduzir dúvidas antes do trial gratuito.
+          </p>
+          <a class="project__link" href="https://example.com" target="_blank" rel="noopener">Ver o site</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ SOBRE ============ -->
+  <section class="about" id="sobre">
+    <div class="about__inner">
+      <p class="section-head__eyebrow">Sobre</p>
+      <p class="about__text">
+        Eu cuido de tudo entre a ideia e a página no ar: estrutura, copy,
+        design visual e desenvolvimento. Cada projeto começa entendendo o
+        que o negócio do cliente realmente precisa comunicar — sem seções
+        de recheio, sem enfeite que não ajuda a converter.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ PROCESSO ============ -->
+  <section class="process" id="processo">
+    <div class="section-head">
+      <p class="section-head__eyebrow">Processo</p>
+      <h2 class="section-head__title">Como funciona</h2>
+    </div>
+
+    <ol class="process-list">
+      <li class="process-step">
+        <span class="process-step__number">01</span>
+        <h3 class="process-step__title">Diagnóstico</h3>
+        <p class="process-step__desc">
+          Entendo o negócio, o público e o objetivo real da página antes de
+          desenhar qualquer coisa.
+        </p>
+      </li>
+      <li class="process-step">
+        <span class="process-step__number">02</span>
+        <h3 class="process-step__title">Design &amp; desenvolvimento</h3>
+        <p class="process-step__desc">
+          Construo a página do zero, com estrutura pensada pra conversão e
+          código leve, sem inchaço.
+        </p>
+      </li>
+      <li class="process-step">
+        <span class="process-step__number">03</span>
+        <h3 class="process-step__title">Lançamento &amp; ajuste</h3>
+        <p class="process-step__desc">
+          Publico, acompanho os primeiros resultados e ajusto o que for
+          preciso com você.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ CTA FINAL / CONTATO ============ -->
+  <section class="cta-final" id="contato">
+    <h2 class="cta-final__title">Vamos construir sua próxima página?</h2>
+    <p class="cta-final__subtitle">
+      Me conta um pouco sobre seu projeto e eu retorno com os próximos passos.
+    </p>
+    <a href="mailto:seuemail@exemplo.com" class="btn btn--primary btn--lg">
+      seuemail@exemplo.com
+    </a>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span>Nome Sobrenome</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
