@@ -39,40 +39,57 @@
     updateParallax();
   }
 
-  /* ------------------------------------------------------------
-     Pausa o vídeo de fundo quando ele sai da viewport, pra
-     economizar recursos em páginas longas / mobile.
-  ------------------------------------------------------------ */
-  var heroVideo = document.querySelector('.hero__video');
-  var isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
   var connection = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
   var saveData = connection && connection.saveData;
   var slowConnection = connection && /^(slow-2g|2g|3g)$/.test(connection.effectiveType || '');
+  var isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
 
-  // No celular / conexão fraca, nem baixa o vídeo: fica só o poster (leve).
-  var shouldLoadVideo = heroVideo && !isSmallScreen && !prefersReducedMotion && !saveData && !slowConnection;
+  // Carrega o <source> de um <video preload="none" data-src="..."> só quando
+  // vale a pena (sem economia de dados, sem conexão ruim), e só toca quando
+  // o elemento está visível na tela — pausa quando sai, retoma quando volta.
+  function lazyLoadVideo(video, options) {
+    if (!video || prefersReducedMotion || saveData || slowConnection) return;
+    if (options && options.skipOnSmallScreen && isSmallScreen) return;
 
-  if (shouldLoadVideo) {
-    var source = document.createElement('source');
-    source.src = heroVideo.dataset.src;
-    source.type = 'video/mp4';
-    heroVideo.appendChild(source);
-    heroVideo.load();
+    function start() {
+      if (video.querySelector('source')) return;
+      var source = document.createElement('source');
+      source.src = video.dataset.src;
+      source.type = 'video/mp4';
+      video.appendChild(source);
+      video.load();
+    }
 
     if ('IntersectionObserver' in window) {
-      var videoObserver = new IntersectionObserver(function (entries) {
+      var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            heroVideo.play().catch(function () {});
+            start();
+            video.play().catch(function () {});
           } else {
-            heroVideo.pause();
+            video.pause();
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.15 });
 
-      videoObserver.observe(heroVideo);
+      observer.observe(video);
     } else {
-      heroVideo.play().catch(function () {});
+      start();
+      video.play().catch(function () {});
     }
   }
+
+  /* ------------------------------------------------------------
+     Vídeo de fundo do hero: pesado e decorativo, então não baixa
+     em telas pequenas — fica só o poster.
+  ------------------------------------------------------------ */
+  lazyLoadVideo(document.querySelector('.hero__video'), { skipOnSmallScreen: true });
+
+  /* ------------------------------------------------------------
+     Previews dos projetos: arquivos bem menores, então tocam em
+     qualquer tela, carregando só quando o card entra na viewport.
+  ------------------------------------------------------------ */
+  document.querySelectorAll('.project__video').forEach(function (video) {
+    lazyLoadVideo(video, { skipOnSmallScreen: false });
+  });
 })();

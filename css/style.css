@@ -365,6 +365,18 @@ video {
   transition: transform 0.4s var(--ease);
 }
 
+.project__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--bg-elev);
+  transition: transform 0.4s var(--ease);
+}
+
+.project__media:hover .project__video {
+  transform: scale(1.03);
+}
+
 .project__media:hover .project__placeholder {
   transform: scale(1.03);
 }
