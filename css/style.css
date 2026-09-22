@@ -529,7 +529,22 @@ video {
   .hero__content {
     padding-bottom: 64px;
   }
-  .nav__links span {
+
+  .nav__inner {
+    padding: 16px var(--gutter);
+  }
+  .nav__brand {
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .nav__links {
+    gap: 10px;
+    font-size: 0.82rem;
+  }
+  .nav__links a:not(.nav__cta):nth-of-type(2) {
     display: none;
+  }
+  .nav__cta {
+    padding: 7px 12px;
   }
 }

@@ -44,18 +44,35 @@
      economizar recursos em páginas longas / mobile.
   ------------------------------------------------------------ */
   var heroVideo = document.querySelector('.hero__video');
+  var isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+  var connection = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
+  var saveData = connection && connection.saveData;
+  var slowConnection = connection && /^(slow-2g|2g|3g)$/.test(connection.effectiveType || '');
 
-  if (heroVideo && 'IntersectionObserver' in window) {
-    var videoObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          heroVideo.play().catch(function () {});
-        } else {
-          heroVideo.pause();
-        }
-      });
-    }, { threshold: 0.1 });
+  // No celular / conexão fraca, nem baixa o vídeo: fica só o poster (leve).
+  var shouldLoadVideo = heroVideo && !isSmallScreen && !prefersReducedMotion && !saveData && !slowConnection;
 
-    videoObserver.observe(heroVideo);
+  if (shouldLoadVideo) {
+    var source = document.createElement('source');
+    source.src = heroVideo.dataset.src;
+    source.type = 'video/mp4';
+    heroVideo.appendChild(source);
+    heroVideo.load();
+
+    if ('IntersectionObserver' in window) {
+      var videoObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            heroVideo.play().catch(function () {});
+          } else {
+            heroVideo.pause();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      videoObserver.observe(heroVideo);
+    } else {
+      heroVideo.play().catch(function () {});
+    }
   }
 })();
